@@ -11,6 +11,11 @@ Page({
   onLoad: function(options) {
     this.refreshNews();
   },
+  onPullDownRefresh: function(){
+    this.refreshNews(() => {
+      wx.stopPullDownRefresh();
+    });
+  },
   refreshNews(onComplete) {
     const page = this;
     wx.request({

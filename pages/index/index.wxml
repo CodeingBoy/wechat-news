@@ -1,1 +1,61 @@
-
+<view id="container">
+  <view id="nav-news-category">
+    <view id="category-domestic">
+      <text class="category-text">
+        国内
+      </text>
+    </view>
+    <view id="category-international">
+      <text class="category-text">
+        国际
+      </text>
+    </view>
+    <view id="category-financial">
+      <text class="category-text">
+        财经
+      </text>
+    </view>
+    <view id="category-entertain">
+      <text class="category-text">
+        娱乐
+      </text>
+    </view>
+    <view id="category-military">
+      <text class="category-text">
+        军事
+      </text>
+    </view>
+    <view id="category-sport">
+      <text class="category-text">
+        体育
+      </text>
+    </view>
+    <view id="category-other">
+      <text class="category-text">
+        其它
+      </text>
+    </view>
+  </view>
+  <view id="hot-news">
+    <swiper indicator-dots="true" autoplay="true" circular="true">
+      <swiper-item class="hot-news-item" wx:for="{{hotNewsList}}">
+        <image class="hot-news-image" src="{{item.image}}" mode="widthFix" />
+        <view class="hot-news-text">
+          <text class="hot-news-title">{{item.title}}</text>
+          <text class="hot-news-info">{{item.info}}</text>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view id="news-list">
+    <view class="news-item" wx:for="{{newsList}}">
+      <view class="news-item-text">
+        <text class="news-title">{{item.title}}</text>
+        <text class="news-info">{{item.info}}</text>
+      </view>
+      <view class="news-item-aside">
+        <image class="news-image" src="{{item.firstImage}}" mode="aspectFill" />
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,6 +1,6 @@
 import util from '../../utils/util.js';
 // const util = require('../../utils/util.js');
-const app = getApp()
+const app = getApp();
 
 Page({
   data: {

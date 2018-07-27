@@ -1,2 +1,23 @@
-<!--pages/detail/detail.wxml-->
-<text>pages/detail/detail.wxml</text>
+<view class="container">
+  <view id="news-title">
+    {{title}}
+  </view>
+  <view id="news-info">
+    <view id="news-source-and-time">
+      {{info}}
+    </view>
+    <view id="news-read-count">
+      阅读 {{readCount}}
+    </view>
+  </view>
+  <view id="news-image">
+  </view>
+  <view id="news-content">
+    <block wx:for="{{contents}}">
+      <image wx:if="{{item.type == 'image'}}" src="{{item.src}}" />
+      <text wx:elif="{{item.type =='p'}}">
+        {{item.text}}
+      </text>
+    </block>
+  </view>
+</view>

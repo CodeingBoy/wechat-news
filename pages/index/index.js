@@ -4,6 +4,8 @@ const app = getApp()
 
 Page({
   data: {
+    categoryNames: ["国内", "国际", "财经", "娱乐", "军事", "体育", "其他"],
+    categories: ["gn", "gj", "cj", "yl", "js", "ty", "other"],
     currentCategory: "gn",
     newsList: [],
     hotNewsList: []
@@ -11,17 +13,24 @@ Page({
   onLoad: function(options) {
     this.refreshNews();
   },
-  onPullDownRefresh: function(){
+  onPullDownRefresh: function() {
     this.refreshNews(() => {
       wx.stopPullDownRefresh();
     });
+  },
+  onClickCategory: function(event) {
+    var categoryId = Number(event.currentTarget.dataset.categoryId);
+    this.setData({
+      currentCategory: this.data.categories[categoryId]
+    });
+    wx.startPullDownRefresh({});
   },
   refreshNews(onComplete) {
     const page = this;
     wx.request({
       url: 'https://test-miniprogram.com/api/news/list',
       data: {
-        "type": "gn"
+        "type": this.data.currentCategory
       },
       success: function(data) {
         if (data.data.code != '200') {
@@ -37,8 +46,9 @@ Page({
         });
 
         // pick hot news
-        var hotNewsList =  [];
-        for(var i = 0;i < 5;i++){
+        var hotNewsList = [];
+        var times = Math.min(newsList.length, 5);
+        for (var i = 0; i < times; i++) {
           const news = newsList[i];
           var hotNewsObj = {
             title: news.title,

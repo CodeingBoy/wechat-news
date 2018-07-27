@@ -1,38 +1,8 @@
 <view id="container">
   <view id="nav-news-category">
-    <view id="category-domestic">
+    <view wx:for="{{categoryNames}}" bind:tap="onClickCategory" data-category-id="{{index}}">
       <text class="category-text">
-        国内
-      </text>
-    </view>
-    <view id="category-international">
-      <text class="category-text">
-        国际
-      </text>
-    </view>
-    <view id="category-financial">
-      <text class="category-text">
-        财经
-      </text>
-    </view>
-    <view id="category-entertain">
-      <text class="category-text">
-        娱乐
-      </text>
-    </view>
-    <view id="category-military">
-      <text class="category-text">
-        军事
-      </text>
-    </view>
-    <view id="category-sport">
-      <text class="category-text">
-        体育
-      </text>
-    </view>
-    <view id="category-other">
-      <text class="category-text">
-        其它
+        {{item}}
       </text>
     </view>
   </view>

@@ -77,3 +77,7 @@
 #retry-btn{
   margin-top: 10rpx;
 }
+
+.strong-text{
+  font-weight: bold;
+}

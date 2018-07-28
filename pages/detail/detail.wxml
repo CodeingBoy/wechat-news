@@ -25,7 +25,7 @@
     <view id="news-content">
       <block wx:for="{{contents}}">
         <image wx:if="{{item.type == 'image'}}" src="{{item.src}}" mode="widthFix" />
-        <view wx:elif="{{item.type =='p'}}">
+        <view wx:elif="{{item.type == 'p' || item.type == 'strong'}}" class="{{item.type == 'strong'? 'strong-text':''}}">
           {{item.text}}
         </view>
       </block>

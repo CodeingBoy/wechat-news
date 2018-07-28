@@ -6,6 +6,7 @@ Page({
     categoryNames: ["国内", "国际", "财经", "娱乐", "军事", "体育", "其他"],
     categories: ["gn", "gj", "cj", "yl", "js", "ty", "other"],
     currentCategory: "gn",
+    currentCategoryId: 0,
     newsList: [],
     hotNewsList: []
   },
@@ -20,7 +21,8 @@ Page({
   onClickCategory: function(event) {
     var categoryId = Number(event.currentTarget.dataset.categoryId);
     this.setData({
-      currentCategory: this.data.categories[categoryId]
+      currentCategory: this.data.categories[categoryId],
+      currentCategoryId: categoryId
     });
     wx.startPullDownRefresh({});
   },

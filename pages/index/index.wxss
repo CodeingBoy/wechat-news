@@ -37,10 +37,13 @@
 .category-text {
   font-size: 30rpx;
   line-height: 42rpx;
+    opacity: 0.5;
 }
 
-.current-category {
-  font-size: 40rpx;
+.current-category-text {
+  padding-bottom: 5rpx;
+  border-bottom: 2px solid white;
+  opacity: 1;
 }
 
 #hot-news {

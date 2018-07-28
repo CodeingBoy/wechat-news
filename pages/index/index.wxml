@@ -5,7 +5,7 @@
 <view id="container">
   <view id="nav-news-category">
     <view wx:for="{{categoryNames}}" bind:tap="onClickCategory" data-category-id="{{index}}">
-      <text class="category-text">
+      <text class="category-text {{currentCategoryId == index?'current-category-text':''}}">
         {{item}}
       </text>
     </view>

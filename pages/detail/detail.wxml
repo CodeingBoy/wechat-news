@@ -14,10 +14,10 @@
   </view>
   <view id="news-content">
     <block wx:for="{{contents}}">
-      <image wx:if="{{item.type == 'image'}}" src="{{item.src}}" />
-      <text wx:elif="{{item.type =='p'}}">
+      <image wx:if="{{item.type == 'image'}}" src="{{item.src}}" mode="widthFix" />
+      <view wx:elif="{{item.type =='p'}}">
         {{item.text}}
-      </text>
+      </view>
     </block>
   </view>
 </view>

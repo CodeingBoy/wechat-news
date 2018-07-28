@@ -1,1 +1,43 @@
-/* pages/detail/detail.wxss */
+.container {
+  margin: 10rpx 30rpx;
+}
+
+#news-title {
+  font-size: 50rpx;
+  line-height: 70rpx;
+}
+
+#news-info {
+  display: flex;
+  font-size: 27rpx;
+  opacity: 0.5;
+  align-content: center;
+  padding: 15rpx 0;
+}
+
+#news-source-and-time {
+  flex-grow: 1;
+}
+
+#news-read-count {
+  flex-grow: 0;
+}
+
+#news-content{
+  position: relative;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  margin-bottom: 100rpx;
+}
+
+#news-content view{
+  margin: 20rpx 0;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color: darkslategray;
+}
+
+#news-content image{
+  width: 100%;
+  margin: 10rpx auto;
+}

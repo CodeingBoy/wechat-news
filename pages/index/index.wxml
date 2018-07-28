@@ -1,3 +1,7 @@
+<view id="custom-navigation-bar">
+  <image id="icon-app" src="images/app-icon.png" mode="aspectFit"/>
+  <text id="app-name">旧闻</text>
+</view>
 <view id="container">
   <view id="nav-news-category">
     <view wx:for="{{categoryNames}}" bind:tap="onClickCategory" data-category-id="{{index}}">

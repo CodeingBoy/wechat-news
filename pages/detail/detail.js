@@ -10,7 +10,7 @@ Page({
     contents: []
   },
   onLoad: function(options) {
-    this.getNews(options.query.id);
+    this.getNews(options.id);
   },
   onBack: function(){
     wx.navigateBack();

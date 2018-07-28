@@ -1,5 +1,4 @@
 import util from '../../utils/util.js';
-// const util = require('../../utils/util.js');
 const app = getApp();
 
 Page({
@@ -24,6 +23,15 @@ Page({
       currentCategory: this.data.categories[categoryId]
     });
     wx.startPullDownRefresh({});
+  },
+  onNewsItemTap: function(event) {
+    const newsId = event.currentTarget.dataset.newsId;
+    wx.navigateTo({
+      url: "/pages/detail/detail?id=" + newsId
+    });
+  },
+  onHotNewsItemTap: function(event){
+    this.onNewsItemTap(event);
   },
   refreshNews(onComplete) {
     const page = this;
@@ -51,6 +59,7 @@ Page({
         for (var i = 0; i < times; i++) {
           const news = newsList[i];
           var hotNewsObj = {
+            id: news.id,
             title: news.title,
             image: news.firstImage,
             info: news.source + " " + news.date.substring(11, 16)

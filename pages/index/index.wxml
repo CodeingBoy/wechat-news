@@ -8,7 +8,7 @@
   </view>
   <view id="hot-news">
     <swiper indicator-dots="true" autoplay="true" circular="true">
-      <swiper-item class="hot-news-item" wx:for="{{hotNewsList}}">
+      <swiper-item class="hot-news-item" wx:for="{{hotNewsList}}" bind:tap="onHotNewsItemTap" data-news-id="{{item.id}}">
         <image class="hot-news-image" src="{{item.image}}" mode="widthFix" />
         <view class="hot-news-text">
           <text class="hot-news-title">{{item.title}}</text>
@@ -18,7 +18,7 @@
     </swiper>
   </view>
   <view id="news-list">
-    <view class="news-item" wx:for="{{newsList}}">
+    <view class="news-item" wx:for="{{newsList}}" bind:tap="onNewsItemTap" data-news-id="{{item.id}}">
       <view class="news-item-text">
         <text class="news-title">{{item.title}}</text>
         <text class="news-info">{{item.info}}</text>

@@ -60,3 +60,20 @@
   width: 100%;
   margin: 10rpx auto;
 }
+
+#error-icon{
+  height: 300rpx;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 300rpx;
+}
+
+#error-text{
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#retry-btn{
+  margin-top: 10rpx;
+}

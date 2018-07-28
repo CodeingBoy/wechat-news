@@ -1,36 +1,43 @@
 <view id="custom-navigation-bar">
-  <image id="icon-app" src="images/app-icon.png" mode="aspectFit"/>
+  <image id="icon-app" src="images/app-icon.png" mode="aspectFit" />
   <text id="app-name">旧闻</text>
 </view>
 <view id="container">
-  <view id="nav-news-category">
-    <view wx:for="{{categoryNames}}" bind:tap="onClickCategory" data-category-id="{{index}}">
-      <text class="category-text {{currentCategoryId == index?'current-category-text':''}}">
+  <block wx:if="{{errorOccurred}}">
+    <image id="error-icon" src="images/error-icon.png" mode="aspectFit"/>
+    <text id="error-text">网络故障，请稍后再试</text>
+    <button id="retry-btn" bind:tap="onRetry">重试</button>
+  </block>
+  <block wx:else>
+    <view id="nav-news-category">
+      <view wx:for="{{categoryNames}}" bind:tap="onClickCategory" data-category-id="{{index}}">
+        <text class="category-text {{currentCategoryId == index?'current-category-text':''}}">
         {{item}}
       </text>
+      </view>
     </view>
-  </view>
-  <view id="hot-news">
-    <swiper indicator-dots="true" autoplay="true" circular="true">
-      <swiper-item class="hot-news-item" wx:for="{{hotNewsList}}" bind:tap="onHotNewsItemTap" data-news-id="{{item.id}}">
-        <image class="hot-news-image" src="{{item.image}}" mode="widthFix" />
-        <image class="hot-news-gradient" />
-        <view class="hot-news-text">
-          <text class="hot-news-title">{{item.title}}</text>
-          <text class="hot-news-info">{{item.info}}</text>
+    <view id="hot-news">
+      <swiper indicator-dots="true" autoplay="true" circular="true">
+        <swiper-item class="hot-news-item" wx:for="{{hotNewsList}}" bind:tap="onHotNewsItemTap" data-news-id="{{item.id}}">
+          <image class="hot-news-image" src="{{item.image}}" mode="widthFix" />
+          <image class="hot-news-gradient" />
+          <view class="hot-news-text">
+            <text class="hot-news-title">{{item.title}}</text>
+            <text class="hot-news-info">{{item.info}}</text>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+    <view id="news-list">
+      <view class="news-item" wx:for="{{newsList}}" bind:tap="onNewsItemTap" data-news-id="{{item.id}}">
+        <view class="news-item-text">
+          <text class="news-title">{{item.title}}</text>
+          <text class="news-info">{{item.info}}</text>
         </view>
-      </swiper-item>
-    </swiper>
-  </view>
-  <view id="news-list">
-    <view class="news-item" wx:for="{{newsList}}" bind:tap="onNewsItemTap" data-news-id="{{item.id}}">
-      <view class="news-item-text">
-        <text class="news-title">{{item.title}}</text>
-        <text class="news-info">{{item.info}}</text>
-      </view>
-      <view class="news-item-aside">
-        <image class="news-image" src="{{item.firstImage}}" mode="aspectFill" />
+        <view class="news-item-aside">
+          <image class="news-image" src="{{item.firstImage}}" mode="aspectFill" />
+        </view>
       </view>
     </view>
-  </view>
+  </block>
 </view>

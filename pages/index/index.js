@@ -8,7 +8,8 @@ Page({
     currentCategory: "gn",
     currentCategoryId: 0,
     newsList: [],
-    hotNewsList: []
+    hotNewsList: [],
+    errorOccurred: false
   },
   onLoad: function(options) {
     this.refreshNews();
@@ -32,10 +33,13 @@ Page({
       url: "/pages/detail/detail?id=" + newsId
     });
   },
-  onHotNewsItemTap: function(event){
+  onHotNewsItemTap: function(event) {
     this.onNewsItemTap(event);
   },
-  refreshNews(onComplete) {
+  onRetry: function() {
+    wx.startPullDownRefresh({});
+  },
+  refreshNews: function(onComplete) {
     const page = this;
     wx.request({
       url: 'https://test-miniprogram.com/api/news/list',
@@ -44,16 +48,13 @@ Page({
       },
       success: function(data) {
         if (data.data.code != '200') {
-          console.log(data);
-          wx.showToast({
-            title: '获取新闻失败',
-            icon: 'none'
-          });
+          page.showErrorToastOrPage();
+          return;
         }
         var newsList = data.data.result;
         newsList.forEach((n) => {
           n.info = n.date.substring(0, 10) + " " + n.source;
-          if(!n.firstImage){
+          if (!n.firstImage) {
             n.firstImage = "images/default-news-image.png";
           }
         });
@@ -75,16 +76,33 @@ Page({
 
         page.setData({
           newsList,
-          hotNewsList
+          hotNewsList,
+          errorOccurred: false
         });
 
       },
       fail: function() {
-
+        page.showErrorToastOrPage();
       },
       complete: function() {
         onComplete && onComplete();
       }
-    })
+    });
+  },
+  showErrorToastOrPage: function() {
+    const newsList = this.data.newsList;
+    if (!newsList || newsList.length == 0) {
+      // news list is empty or null, show error page
+      this.setData({
+        errorOccurred: true
+      });
+
+    } else {
+      // show toast instead of error page for better user experience
+      wx.showToast({
+        title: '获取新闻失败',
+        icon: 'none'
+      });
+    }
   }
 })

@@ -1,27 +1,34 @@
 <view id="custom-navigation-bar">
-  <image id="icon-back" src="images/back.png" mode="aspectFit" bind:tap="onBack"/>
+  <image id="icon-back" src="images/back.png" mode="aspectFit" bind:tap="onBack" />
   <text>资讯详情</text>
 </view>
 <view class="container">
-  <view id="news-title">
-    {{title}}
-  </view>
-  <view id="news-info">
-    <view id="news-source-and-time">
-      {{info}}
+  <block wx:if="{{errorOccurred}}">
+    <image id="error-icon" src="images/error-icon.png" mode="aspectFit" />
+    <text id="error-text">网络故障，请稍后再试</text>
+    <button id="retry-btn" bind:tap="onRetry">重试</button>
+  </block>
+  <block wx:else>
+    <view id="news-title">
+      {{title}}
     </view>
-    <view id="news-read-count">
-      阅读 {{readCount}}
-    </view>
-  </view>
-  <view id="news-image">
-  </view>
-  <view id="news-content">
-    <block wx:for="{{contents}}">
-      <image wx:if="{{item.type == 'image'}}" src="{{item.src}}" mode="widthFix" />
-      <view wx:elif="{{item.type =='p'}}">
-        {{item.text}}
+    <view id="news-info">
+      <view id="news-source-and-time">
+        {{info}}
       </view>
-    </block>
-  </view>
+      <view id="news-read-count">
+        阅读 {{readCount}}
+      </view>
+    </view>
+    <view id="news-image">
+    </view>
+    <view id="news-content">
+      <block wx:for="{{contents}}">
+        <image wx:if="{{item.type == 'image'}}" src="{{item.src}}" mode="widthFix" />
+        <view wx:elif="{{item.type =='p'}}">
+          {{item.text}}
+        </view>
+      </block>
+    </view>
+  </block>
 </view>

@@ -3,17 +3,25 @@ const app = getApp();
 
 Page({
   data: {
+    id: 0,
     title: "",
     info: "",
     readCount: 0,
     coverImage: "",
-    contents: []
+    contents: [],
+    errorOccurred: false
   },
   onLoad: function(options) {
+    this.setData({
+      id: options.id
+    });
     this.getNews(options.id);
   },
-  onBack: function(){
+  onBack: function() {
     wx.navigateBack();
+  },
+  onRetry: function(){
+    this.getNews(this.data.id);
   },
   getNews: function(id, onComplete) {
     const page = this;
@@ -23,7 +31,10 @@ Page({
         id: id
       },
       success: function(data) {
-        console.log(data);
+        if (data.data.code != 200) {
+          page.showErrorPage();
+          return;
+        }
         const result = data.data.result;
 
         var time = result.date.substring(11, 16);
@@ -34,9 +45,21 @@ Page({
           title: result.title,
           readCount: result.readCount,
           info: info,
-          contents: result.content
+          contents: result.content,
+          errorOccurred: false
         });
+      },
+      fail: function() {
+        page.showErrorPage();
+      },
+      complete: function(){
+        onComplete && onComplete();
       }
     })
+  },
+  showErrorPage: function() {
+    this.setData({
+      errorOccurred: true
+    });
   }
-});
+})

@@ -14,6 +14,7 @@
     <swiper indicator-dots="true" autoplay="true" circular="true">
       <swiper-item class="hot-news-item" wx:for="{{hotNewsList}}" bind:tap="onHotNewsItemTap" data-news-id="{{item.id}}">
         <image class="hot-news-image" src="{{item.image}}" mode="widthFix" />
+        <image class="hot-news-gradient" />
         <view class="hot-news-text">
           <text class="hot-news-title">{{item.title}}</text>
           <text class="hot-news-info">{{item.info}}</text>

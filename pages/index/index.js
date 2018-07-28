@@ -53,6 +53,9 @@ Page({
         var newsList = data.data.result;
         newsList.forEach((n) => {
           n.info = n.date.substring(0, 10) + " " + n.source;
+          if(!n.firstImage){
+            n.firstImage = "images/default-news-image.png";
+          }
         });
 
         // pick hot news

@@ -2,6 +2,25 @@
   margin: 10rpx 30rpx;
 }
 
+#custom-navigation-bar{
+  margin-top: 50rpx;
+  padding: 10rpx 0 20rpx 10rpx;
+  border-bottom: 2px solid #2f93d5;
+  display: flex;
+  height: 40rpx;
+  align-content: center;
+}
+
+#icon-back{
+  height: 40rpx;
+  width: 40rpx;
+}
+
+#custom-navigation-bar text{
+  font-size: 30rpx;
+  line-height: 42rpx;
+}
+
 #news-title {
   font-size: 50rpx;
   line-height: 70rpx;

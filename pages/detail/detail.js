@@ -10,14 +10,17 @@ Page({
     contents: []
   },
   onLoad: function(options) {
-    this.getNews();
+    this.getNews(options.query.id);
+  },
+  onBack: function(){
+    wx.navigateBack();
   },
   getNews: function(id, onComplete) {
     const page = this;
     wx.request({
       url: 'https://test-miniprogram.com/api/news/detail',
       data: {
-        id: 1523074607694
+        id: id
       },
       success: function(data) {
         console.log(data);

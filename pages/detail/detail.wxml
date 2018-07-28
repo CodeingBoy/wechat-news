@@ -1,3 +1,7 @@
+<view id="custom-navigation-bar">
+  <image id="icon-back" src="images/back.png" mode="aspectFit" bind:tap="onBack"/>
+  <text>资讯详情</text>
+</view>
 <view class="container">
   <view id="news-title">
     {{title}}

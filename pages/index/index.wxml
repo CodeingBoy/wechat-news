@@ -4,7 +4,7 @@
 </view>
 <view id="container">
   <block wx:if="{{errorOccurred}}">
-    <image id="error-icon" src="images/error-icon.png" mode="aspectFit"/>
+    <image id="error-icon" src="images/error-icon.png" mode="aspectFit" />
     <text id="error-text">网络故障，请稍后再试</text>
     <button id="retry-btn" bind:tap="onRetry">重试</button>
   </block>

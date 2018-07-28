@@ -20,7 +20,7 @@ Page({
   onBack: function() {
     wx.navigateBack();
   },
-  onRetry: function(){
+  onRetry: function() {
     this.getNews(this.data.id);
   },
   getNews: function(id, onComplete) {
@@ -52,7 +52,7 @@ Page({
       fail: function() {
         page.showErrorPage();
       },
-      complete: function(){
+      complete: function() {
         onComplete && onComplete();
       }
     })

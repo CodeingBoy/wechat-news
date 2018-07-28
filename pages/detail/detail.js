@@ -3,12 +3,17 @@ const app = getApp();
 
 Page({
   data: {
+    // news id, for fetching news(especially for retry)
     id: 0,
+    // news title
     title: "",
+    // news info, combining source and publish time
     info: "",
+    // news reader count
     readCount: 0,
-    coverImage: "",
+    // contents object for rendering
     contents: [],
+    // is error occurred? if it is, show error page and let users retry
     errorOccurred: false
   },
   onLoad: function(options) {
@@ -32,15 +37,20 @@ Page({
       },
       success: function(data) {
         if (data.data.code != 200) {
+          // something wrong happened
           page.showErrorPage();
           return;
         }
+
+
         const result = data.data.result;
 
+        // compose info
         var time = result.date.substring(11, 16);
         var info = result.source + " " + time;
         info.trim();
 
+        // start rendering
         page.setData({
           title: result.title,
           readCount: result.readCount,

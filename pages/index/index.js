@@ -3,12 +3,19 @@ const app = getApp();
 
 Page({
   data: {
+    // category's name, for rendering
     categoryNames: ["国内", "国际", "财经", "娱乐", "军事", "体育", "其他"],
+    // category's id, for requesting corrsponding news
     categories: ["gn", "gj", "cj", "yl", "js", "ty", "other"],
+    // current selected category, default is "gn"
     currentCategory: "gn",
+    // currend selected category number, for highlighting selected category
     currentCategoryId: 0,
+    // fetched news list
     newsList: [],
+    // hot news list, picked from newsList
     hotNewsList: [],
+    // is error occurred? if it is, show error page instead of empty news list page
     errorOccurred: false
   },
   onLoad: function(options) {
@@ -48,9 +55,12 @@ Page({
       },
       success: function(data) {
         if (data.data.code != '200') {
+          // something wrong happened
           page.showErrorToastOrPage();
           return;
         }
+
+        // compose info text and set default image
         var newsList = data.data.result;
         newsList.forEach((n) => {
           n.info = n.date.substring(0, 10) + " " + n.source;
@@ -74,10 +84,11 @@ Page({
           hotNewsList.push(hotNewsObj);
         }
 
+        // start rendering
         page.setData({
           newsList,
           hotNewsList,
-          errorOccurred: false
+          errorOccurred: false // don't forget this
         });
 
       },

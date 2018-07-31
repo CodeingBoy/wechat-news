@@ -28,11 +28,13 @@ Page({
   },
   onClickCategory: function(event) {
     var categoryId = Number(event.currentTarget.dataset.categoryId);
-    this.setData({
-      currentCategory: this.data.categories[categoryId],
-      currentCategoryId: categoryId
-    });
-    wx.startPullDownRefresh({});
+    if (categoryId !== this.data.currentCategoryId) {
+      this.setData({
+        currentCategory: this.data.categories[categoryId],
+        currentCategoryId: categoryId
+      });
+      this.refreshNews();
+    }
   },
   onNewsItemTap: function(event) {
     const newsId = event.currentTarget.dataset.newsId;
@@ -48,6 +50,9 @@ Page({
   },
   refreshNews: function(onComplete) {
     const page = this;
+    wx.showLoading({
+      title: "加载中"
+    });
     wx.request({
       url: 'https://test-miniprogram.com/api/news/list',
       data: {
@@ -96,7 +101,8 @@ Page({
         page.showErrorToastOrPage();
       },
       complete: function() {
-        onComplete && onComplete();
+        wx.hideLoading();
+        typeof onComplete === 'function' && onComplete();
       }
     });
   },

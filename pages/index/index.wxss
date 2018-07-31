@@ -31,7 +31,8 @@
   text-align: center;
   background-color: #2f93d5;
   color: white;
-  padding: 15rpx 0;
+  padding-bottom: 15rpx;
+  line-height: 1;
 }
 
 .category-text {
